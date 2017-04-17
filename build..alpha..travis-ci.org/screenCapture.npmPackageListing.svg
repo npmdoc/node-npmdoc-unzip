@@ -1,33 +1,33 @@
 <svg height="478" width="720" xmlns="http://www.w3.org/2000/svg">
 <rect height="478" fill="#555" width="720"></rect>
 <text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
-<tspan x="10" y="26">  0.  2017-04-17 11:44:53 +0000    36249 bytes  .</tspan>
-<tspan x="10" y="42">  1.  2017-04-17 11:44:53 +0000     1076 bytes  LICENSE</tspan>
-<tspan x="10" y="58">  2.  2017-04-17 11:44:53 +0000     2800 bytes  README.md</tspan>
-<tspan x="10" y="74">  3.  2017-04-17 11:44:53 +0000      329 bytes  lib/entry.js</tspan>
-<tspan x="10" y="90">  4.  2017-04-17 11:44:53 +0000     1189 bytes  lib/extract.js</tspan>
-<tspan x="10" y="106">  5.  2017-04-17 11:44:53 +0000     8744 bytes  lib/parse.js</tspan>
-<tspan x="10" y="122">  6.  2017-04-17 11:44:53 +0000     2517 bytes  package.json</tspan>
-<tspan x="10" y="138">  7.  2017-04-17 11:44:53 +0000     1432 bytes  test/compressed.js</tspan>
-<tspan x="10" y="154">  8.  2017-04-17 11:44:53 +0000     2270 bytes  test/fileSizeUnknownFlag.js</tspan>
-<tspan x="10" y="170">  9.  2017-04-17 11:44:53 +0000      948 bytes  test/pipeSingleEntry.js</tspan>
-<tspan x="10" y="186"> 10.  2017-04-17 11:44:53 +0000     1325 bytes  test/uncompressed.js</tspan>
-<tspan x="10" y="202"> 11.  2017-04-17 11:44:53 +0000     1598 bytes  testData/compressed-OSX-Finder/archive.zip</tspan>
-<tspan x="10" y="218"> 12.  2017-04-17 11:44:53 +0000        3 bytes  testData/compressed-OSX-Finder/inflated/dir/file\</tspan>
+<tspan x="10" y="26">  0.  2017-04-17 11:46:13 +0000    36249 bytes  .</tspan>
+<tspan x="10" y="42">  1.  2017-04-17 11:46:13 +0000     1076 bytes  LICENSE</tspan>
+<tspan x="10" y="58">  2.  2017-04-17 11:46:13 +0000     2800 bytes  README.md</tspan>
+<tspan x="10" y="74">  3.  2017-04-17 11:46:13 +0000      329 bytes  lib/entry.js</tspan>
+<tspan x="10" y="90">  4.  2017-04-17 11:46:13 +0000     1189 bytes  lib/extract.js</tspan>
+<tspan x="10" y="106">  5.  2017-04-17 11:46:13 +0000     8744 bytes  lib/parse.js</tspan>
+<tspan x="10" y="122">  6.  2017-04-17 11:46:13 +0000     2517 bytes  package.json</tspan>
+<tspan x="10" y="138">  7.  2017-04-17 11:46:13 +0000     1432 bytes  test/compressed.js</tspan>
+<tspan x="10" y="154">  8.  2017-04-17 11:46:13 +0000     2270 bytes  test/fileSizeUnknownFlag.js</tspan>
+<tspan x="10" y="170">  9.  2017-04-17 11:46:13 +0000      948 bytes  test/pipeSingleEntry.js</tspan>
+<tspan x="10" y="186"> 10.  2017-04-17 11:46:13 +0000     1325 bytes  test/uncompressed.js</tspan>
+<tspan x="10" y="202"> 11.  2017-04-17 11:46:13 +0000     1598 bytes  testData/compressed-OSX-Finder/archive.zip</tspan>
+<tspan x="10" y="218"> 12.  2017-04-17 11:46:13 +0000        3 bytes  testData/compressed-OSX-Finder/inflated/dir/file\</tspan>
 <tspan x="10" y="234">InsideDir.txt</tspan>
-<tspan x="10" y="250"> 13.  2017-04-17 11:44:53 +0000     2712 bytes  testData/compressed-OSX-Finder/inflated/file.txt</tspan>
-<tspan x="10" y="266"> 14.  2017-04-17 11:44:53 +0000     1636 bytes  testData/compressed-flags-set/archive.zip</tspan>
-<tspan x="10" y="282"> 15.  2017-04-17 11:44:53 +0000        3 bytes  testData/compressed-flags-set/inflated/dir/fileI\</tspan>
+<tspan x="10" y="250"> 13.  2017-04-17 11:46:13 +0000     2712 bytes  testData/compressed-OSX-Finder/inflated/file.txt</tspan>
+<tspan x="10" y="266"> 14.  2017-04-17 11:46:13 +0000     1636 bytes  testData/compressed-flags-set/archive.zip</tspan>
+<tspan x="10" y="282"> 15.  2017-04-17 11:46:13 +0000        3 bytes  testData/compressed-flags-set/inflated/dir/fileI\</tspan>
 <tspan x="10" y="298">nsideDir.txt</tspan>
-<tspan x="10" y="314"> 16.  2017-04-17 11:44:53 +0000     2712 bytes  testData/compressed-flags-set/inflated/file.txt</tspan>
-<tspan x="10" y="330"> 17.  2017-04-17 11:44:53 +0000     1636 bytes  testData/compressed-standard/archive.zip</tspan>
-<tspan x="10" y="346"> 18.  2017-04-17 11:44:53 +0000        3 bytes  testData/compressed-standard/inflated/dir/fileIn\</tspan>
+<tspan x="10" y="314"> 16.  2017-04-17 11:46:13 +0000     2712 bytes  testData/compressed-flags-set/inflated/file.txt</tspan>
+<tspan x="10" y="330"> 17.  2017-04-17 11:46:13 +0000     1636 bytes  testData/compressed-standard/archive.zip</tspan>
+<tspan x="10" y="346"> 18.  2017-04-17 11:46:13 +0000        3 bytes  testData/compressed-standard/inflated/dir/fileIn\</tspan>
 <tspan x="10" y="362">sideDir.txt</tspan>
-<tspan x="10" y="378"> 19.  2017-04-17 11:44:53 +0000     2712 bytes  testData/compressed-standard/inflated/file.txt</tspan>
-<tspan x="10" y="394"> 20.  2017-04-17 11:44:53 +0000      489 bytes  testData/uncompressed/archive.zip</tspan>
-<tspan x="10" y="410"> 21.  2017-04-17 11:44:53 +0000        3 bytes  testData/uncompressed/inflated/dir/fileInsideDir\</tspan>
+<tspan x="10" y="378"> 19.  2017-04-17 11:46:13 +0000     2712 bytes  testData/compressed-standard/inflated/file.txt</tspan>
+<tspan x="10" y="394"> 20.  2017-04-17 11:46:13 +0000      489 bytes  testData/uncompressed/archive.zip</tspan>
+<tspan x="10" y="410"> 21.  2017-04-17 11:46:13 +0000        3 bytes  testData/uncompressed/inflated/dir/fileInsideDir\</tspan>
 <tspan x="10" y="426">.txt</tspan>
-<tspan x="10" y="442"> 22.  2017-04-17 11:44:53 +0000       14 bytes  testData/uncompressed/inflated/file.txt</tspan>
-<tspan x="10" y="458"> 23.  2017-04-17 11:44:53 +0000       98 bytes  unzip.js</tspan>
+<tspan x="10" y="442"> 22.  2017-04-17 11:46:13 +0000       14 bytes  testData/uncompressed/inflated/file.txt</tspan>
+<tspan x="10" y="458"> 23.  2017-04-17 11:46:13 +0000       98 bytes  unzip.js</tspan>
 </text>
 </svg>
