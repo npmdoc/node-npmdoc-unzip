@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/EvanOxfeld/node-unzip"
-
-    >unzip (v0.1.11)</a>
+    <a href="https://github.com/EvanOxfeld/node-unzip">unzip (v0.1.11)</a>
 </h1>
 <h4>Unzip cross-platform streaming API compatible with fstream and fs.ReadStream</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.unzip">module unzip</a><ol>
 
@@ -904,27 +897,27 @@
   this._opts = opts || { verbose: false };
 
   this._parser = Parse(this._opts);
-  this._parser.on(&#x27;error&#x27;, function(err) {
-    self.emit(&#x27;error&#x27;, err);
+  this._parser.on('error', function(err) {
+    self.emit('error', err);
   });
-  this.on(&#x27;finish&#x27;, function() {
+  this.on('finish', function() {
     self._parser.end();
   });
 
   var writer = Writer({
-    type: &#x27;Directory&#x27;,
+    type: 'Directory',
     path: opts.path
   });
-  writer.on(&#x27;error&#x27;, function(err) {
-    self.emit(&#x27;error&#x27;, err);
+  writer.on('error', function(err) {
+    self.emit('error', err);
   });
-  writer.on(&#x27;close&#x27;, function() {
-    self.emit(&#x27;close&#x27;)
+  writer.on('close', function() {
+    self.emit('close')
   });
 
-  this.on(&#x27;pipe&#x27;, function(source) {
-    if (opts.verbose &#x26;&#x26; source.path) {
-      console.log(&#x27;Archive: &#x27;, source.path);
+  this.on('pipe', function(source) {
+    if (opts.verbose &amp;&amp; source.path) {
+      console.log('Archive: ', source.path);
     }
   });
 
@@ -938,11 +931,11 @@ $ npm install unzip
 
 ### Extract to a directory
 ```javascript
-fs.createReadStream(&#x27;path/to/archive.zip&#x27;).pipe(unzip.<span class="apidocCodeKeywordSpan">Extract</span>({ path: &#x27
-;output/path&#x27; }));
+fs.createReadStream('path/to/archive.zip').pipe(unzip.<span class="apidocCodeKeywordSpan">Extract</span>({ path: '
+;output/path' }));
 ```
 
-Extract emits the &#x27;close&#x27; event once the zip&#x27;s contents have been fully extracted to disk.
+Extract emits the 'close' event once the zip's contents have been fully extracted to disk.
 
 ### Parse zip file contents
 
@@ -964,7 +957,7 @@ Process each zip file entry or pipe entries to another stream.
     return callback();
   }
 
-  return this._parser.once(&#x27;drain&#x27;, callback);
+  return this._parser.once('drain', callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -979,11 +972,11 @@ Process each zip file entry or pipe entries to another stream.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Writable(options) {
-  var Duplex = require(&#x27;./_stream_duplex&#x27;);
+  var Duplex = require('./_stream_duplex');
 
-  // Writable ctor is applied to Duplexes, though they&#x27;re not
-  // instanceof Writable, they&#x27;re instanceof Readable.
-  if (!(this instanceof Writable) &#x26;&#x26; !(this instanceof Duplex))
+  // Writable ctor is applied to Duplexes, though they're not
+  // instanceof Writable, they're instanceof Readable.
+  if (!(this instanceof Writable) &amp;&amp; !(this instanceof Duplex))
     return new Writable(options);
 
   this._writableState = new WritableState(options, this);
@@ -1006,7 +999,7 @@ Process each zip file entry or pipe entries to another stream.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Extract.super_.prototype._write = function (chunk, encoding, cb) {
-  cb(new Error(&#x27;not implemented&#x27;));
+  cb(new Error('not implemented'));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1023,20 +1016,20 @@ Process each zip file entry or pipe entries to another stream.
     <li>description and source-code<pre class="apidocCodePre">Extract.super_.prototype.end = function (chunk, encoding, cb) {
   var state = this._writableState;
 
-  if (typeof chunk === &#x27;function&#x27;) {
+  if (typeof chunk === 'function') {
     cb = chunk;
     chunk = null;
     encoding = null;
-  } else if (typeof encoding === &#x27;function&#x27;) {
+  } else if (typeof encoding === 'function') {
     cb = encoding;
     encoding = null;
   }
 
-  if (typeof chunk !== &#x27;undefined&#x27; &#x26;&#x26; chunk !== null)
+  if (typeof chunk !== 'undefined' &amp;&amp; chunk !== null)
     this.write(chunk, encoding);
 
   // ignore unnecessary end() calls.
-  if (!state.ending &#x26;&#x26; !state.finished)
+  if (!state.ending &amp;&amp; !state.finished)
     endWritable(this, state, cb);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -1052,7 +1045,7 @@ Process each zip file entry or pipe entries to another stream.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Extract.super_.prototype.pipe = function () {
-  this.emit(&#x27;error&#x27;, new Error(&#x27;Cannot pipe. Not readable.&#x27;));
+  this.emit('error', new Error('Cannot pipe. Not readable.'));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1070,17 +1063,17 @@ Process each zip file entry or pipe entries to another stream.
   var state = this._writableState;
   var ret = false;
 
-  if (typeof encoding === &#x27;function&#x27;) {
+  if (typeof encoding === 'function') {
     cb = encoding;
     encoding = null;
   }
 
   if (Buffer.isBuffer(chunk))
-    encoding = &#x27;buffer&#x27;;
+    encoding = 'buffer';
   else if (!encoding)
     encoding = state.defaultEncoding;
 
-  if (typeof cb !== &#x27;function&#x27;)
+  if (typeof cb !== 'function')
     cb = function() {};
 
   if (state.ended)
@@ -1113,13 +1106,13 @@ Process each zip file entry or pipe entries to another stream.
   this._hasEntryListener = false;
 
   this._pullStream = new PullStream();
-  this._pullStream.on(&#x22;error&#x22;, function (e) {
-    self.emit(&#x27;error&#x27;, e);
+  this._pullStream.on("error", function (e) {
+    self.emit('error', e);
   });
-  this._pullStream.once(&#x22;end&#x22;, function () {
+  this._pullStream.once("end", function () {
     self._streamEnd = true;
   });
-  this._pullStream.once(&#x22;finish&#x22;, function () {
+  this._pullStream.once("finish", function () {
     self._streamFinish = true;
   });
 
@@ -1128,18 +1121,18 @@ Process each zip file entry or pipe entries to another stream.
     <li>example usage<pre class="apidocCodePre">...
 Process each zip file entry or pipe entries to another stream.
 
-__Important__: If you do not intend to consume an entry stream&#x27;s raw data, call autodrain() to dispose of the entry&#x27;s
+__Important__: If you do not intend to consume an entry stream's raw data, call autodrain() to dispose of the entry's
 contents. Otherwise you risk running out of memory.
 
 ```javascript
-fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
+fs.createReadStream('path/to/archive.zip')
 .pipe(unzip.<span class="apidocCodeKeywordSpan">Parse</span>())
-.on(&#x27;entry&#x27;, function (entry) {
+.on('entry', function (entry) {
   var fileName = entry.path;
-  var type = entry.type; // &#x27;Directory&#x27; or &#x27;File&#x27;
+  var type = entry.type; // 'Directory' or 'File'
   var size = entry.size;
-  if (fileName === &#x22;this IS the file I&#x27;m looking for&#x22;) {
-    entry.pipe(fs.createWriteStream(&#x27;output/path&#x27;));
+  if (fileName === "this IS the file I'm looking for") {
+    entry.pipe(fs.createWriteStream('output/path'));
   } else {
 ...</pre></li>
     </ul>
@@ -1158,7 +1151,7 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
     return setImmediate(this._flush.bind(this, callback));
   }
 
-  this.emit(&#x27;close&#x27;);
+  this.emit('close');
   return callback();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -1177,14 +1170,14 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
   var self = this;
   this._pullStream.pull(16, function (err, data) {
     if (err) {
-      return self.emit(&#x27;error&#x27;, err);
+      return self.emit('error', err);
     }
 
     var vars = binary.parse(data)
-      .word32lu(&#x27;dataDescriptorSignature&#x27;)
-      .word32lu(&#x27;crc32&#x27;)
-      .word32lu(&#x27;compressedSize&#x27;)
-      .word32lu(&#x27;uncompressedSize&#x27;)
+      .word32lu('dataDescriptorSignature')
+      .word32lu('crc32')
+      .word32lu('compressedSize')
+      .word32lu('uncompressedSize')
       .vars;
 
     entry.size = vars.uncompressedSize;
@@ -1207,41 +1200,41 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
   var self = this;
   this._pullStream.pull(42, function (err, data) {
     if (err) {
-      return self.emit(&#x27;error&#x27;, err);
+      return self.emit('error', err);
     }
 
     var vars = binary.parse(data)
-      .word16lu(&#x27;versionMadeBy&#x27;)
-      .word16lu(&#x27;versionsNeededToExtract&#x27;)
-      .word16lu(&#x27;flags&#x27;)
-      .word16lu(&#x27;compressionMethod&#x27;)
-      .word16lu(&#x27;lastModifiedTime&#x27;)
-      .word16lu(&#x27;lastModifiedDate&#x27;)
-      .word32lu(&#x27;crc32&#x27;)
-      .word32lu(&#x27;compressedSize&#x27;)
-      .word32lu(&#x27;uncompressedSize&#x27;)
-      .word16lu(&#x27;fileNameLength&#x27;)
-      .word16lu(&#x27;extraFieldLength&#x27;)
-      .word16lu(&#x27;fileCommentLength&#x27;)
-      .word16lu(&#x27;diskNumber&#x27;)
-      .word16lu(&#x27;internalFileAttributes&#x27;)
-      .word32lu(&#x27;externalFileAttributes&#x27;)
-      .word32lu(&#x27;offsetToLocalFileHeader&#x27;)
+      .word16lu('versionMadeBy')
+      .word16lu('versionsNeededToExtract')
+      .word16lu('flags')
+      .word16lu('compressionMethod')
+      .word16lu('lastModifiedTime')
+      .word16lu('lastModifiedDate')
+      .word32lu('crc32')
+      .word32lu('compressedSize')
+      .word32lu('uncompressedSize')
+      .word16lu('fileNameLength')
+      .word16lu('extraFieldLength')
+      .word16lu('fileCommentLength')
+      .word16lu('diskNumber')
+      .word16lu('internalFileAttributes')
+      .word32lu('externalFileAttributes')
+      .word32lu('offsetToLocalFileHeader')
       .vars;
 
     return self._pullStream.pull(vars.fileNameLength, function (err, fileName) {
       if (err) {
-        return self.emit(&#x27;error&#x27;, err);
+        return self.emit('error', err);
       }
-      fileName = fileName.toString(&#x27;utf8&#x27;);
+      fileName = fileName.toString('utf8');
 
       self._pullStream.pull(vars.extraFieldLength, function (err, extraField) {
         if (err) {
-          return self.emit(&#x27;error&#x27;, err);
+          return self.emit('error', err);
         }
         self._pullStream.pull(vars.fileCommentLength, function (err, fileComment) {
           if (err) {
-            return self.emit(&#x27;error&#x27;, err);
+            return self.emit('error', err);
           }
           return self._readRecord();
         });
@@ -1265,26 +1258,26 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
   var self = this;
   this._pullStream.pull(18, function (err, data) {
     if (err) {
-      return self.emit(&#x27;error&#x27;, err);
+      return self.emit('error', err);
     }
 
     var vars = binary.parse(data)
-      .word16lu(&#x27;diskNumber&#x27;)
-      .word16lu(&#x27;diskStart&#x27;)
-      .word16lu(&#x27;numberOfRecordsOnDisk&#x27;)
-      .word16lu(&#x27;numberOfRecords&#x27;)
-      .word32lu(&#x27;sizeOfCentralDirectory&#x27;)
-      .word32lu(&#x27;offsetToStartOfCentralDirectory&#x27;)
-      .word16lu(&#x27;commentLength&#x27;)
+      .word16lu('diskNumber')
+      .word16lu('diskStart')
+      .word16lu('numberOfRecordsOnDisk')
+      .word16lu('numberOfRecords')
+      .word32lu('sizeOfCentralDirectory')
+      .word32lu('offsetToStartOfCentralDirectory')
+      .word16lu('commentLength')
       .vars;
 
     if (vars.commentLength) {
       setImmediate(function() {
         self._pullStream.pull(vars.commentLength, function (err, comment) {
           if (err) {
-            return self.emit(&#x27;error&#x27;, err);
+            return self.emit('error', err);
           }
-          comment = comment.toString(&#x27;utf8&#x27;);
+          comment = comment.toString('utf8');
           return self._pullStream.end();
         });
       });
@@ -1310,57 +1303,57 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
   var self = this;
   this._pullStream.pull(26, function (err, data) {
     if (err) {
-      return self.emit(&#x27;error&#x27;, err);
+      return self.emit('error', err);
     }
 
     var vars = binary.parse(data)
-      .word16lu(&#x27;versionsNeededToExtract&#x27;)
-      .word16lu(&#x27;flags&#x27;)
-      .word16lu(&#x27;compressionMethod&#x27;)
-      .word16lu(&#x27;lastModifiedTime&#x27;)
-      .word16lu(&#x27;lastModifiedDate&#x27;)
-      .word32lu(&#x27;crc32&#x27;)
-      .word32lu(&#x27;compressedSize&#x27;)
-      .word32lu(&#x27;uncompressedSize&#x27;)
-      .word16lu(&#x27;fileNameLength&#x27;)
-      .word16lu(&#x27;extraFieldLength&#x27;)
+      .word16lu('versionsNeededToExtract')
+      .word16lu('flags')
+      .word16lu('compressionMethod')
+      .word16lu('lastModifiedTime')
+      .word16lu('lastModifiedDate')
+      .word32lu('crc32')
+      .word32lu('compressedSize')
+      .word32lu('uncompressedSize')
+      .word16lu('fileNameLength')
+      .word16lu('extraFieldLength')
       .vars;
 
     return self._pullStream.pull(vars.fileNameLength, function (err, fileName) {
       if (err) {
-        return self.emit(&#x27;error&#x27;, err);
+        return self.emit('error', err);
       }
-      fileName = fileName.toString(&#x27;utf8&#x27;);
+      fileName = fileName.toString('utf8');
       var entry = new Entry();
       entry.path = fileName;
       entry.props.path = fileName;
-      entry.type = (vars.compressedSize === 0 &#x26;&#x26; /[\/\\]$/.test(fileName)) ? &#x27;Directory&#x27; : &#x27;File&#x27;;
+      entry.type = (vars.compressedSize === 0 &amp;&amp; /[\/\\]$/.test(fileName)) ? 'Directory' : 'File';
 
       if (self._opts.verbose) {
-        if (entry.type === &#x27;Directory&#x27;) {
-          console.log(&#x27;   creating:&#x27;, fileName);
-        } else if (entry.type === &#x27;File&#x27;) {
+        if (entry.type === 'Directory') {
+          console.log('   creating:', fileName);
+        } else if (entry.type === 'File') {
           if (vars.compressionMethod === 0) {
-            console.log(&#x27; extracting:&#x27;, fileName);
+            console.log(' extracting:', fileName);
           } else {
-            console.log(&#x27;  inflating:&#x27;, fileName);
+            console.log('  inflating:', fileName);
           }
         }
       }
 
       var hasEntryListener = self._hasEntryListener;
       if (hasEntryListener) {
-        self.emit(&#x27;entry&#x27;, entry);
+        self.emit('entry', entry);
       }
 
       self._pullStream.pull(vars.extraFieldLength, function (err, extraField) {
         if (err) {
-          return self.emit(&#x27;error&#x27;, err);
+          return self.emit('error', err);
         }
         if (vars.compressionMethod === 0) {
           self._pullStream.pull(vars.compressedSize, function (err, compressedData) {
             if (err) {
-              return self.emit(&#x27;error&#x27;, err);
+              return self.emit('error', err);
             }
 
             if (hasEntryListener) {
@@ -1371,22 +1364,22 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
             return self._readRecord();
           });
         } else {
-          var fileSizeKnown = !(vars.flags &#x26; 0x08);
+          var fileSizeKnown = !(vars.flags &amp; 0x08);
 
           var inflater = zlib.createInflateRaw();
-          inflater.on(&#x27;error&#x27;, function (err) {
-            self.emit(&#x27;error&#x27;, err);
+          inflater.on('error', function (err) {
+            self.emit('error', err);
           });
 
           if (fileSizeKnown) {
             entry.size = vars.uncompressedSize;
             if (hasEntryListener) {
-              entry.on(&#x27;finish&#x27;, self._readRecord.bind(self));
+              entry.on('finish', self._readRecord.bind(self));
               self._pullStream.pipe(vars.compressedSize, inflater).pipe(entry);
             } else {
               self._pullStream.drain(vars.compressedSize, function (err) {
                 if (err) {
-                  return self.emit(&#x27;error&#x27;, err);
+                  return self.emit('error', err);
                 }
                 self._readRecord();
               });
@@ -1436,7 +1429,7 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
   var self = this;
   this._pullStream.pull(4, function (err, data) {
     if (err) {
-      return self.emit(&#x27;error&#x27;, err);
+      return self.emit('error', err);
     }
 
     if (data.length === 0) {
@@ -1451,8 +1444,8 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
     } else if (signature === 0x06054b50) {
       self._readEndOfCentralDirectoryRecord();
     } else {
-      err = new Error(&#x27;invalid signature: 0x&#x27; + signature.toString(16));
-      self.emit(&#x27;error&#x27;, err);
+      err = new Error('invalid signature: 0x' + signature.toString(16));
+      self.emit('error', err);
     }
   });
 }</pre></li>
@@ -1473,7 +1466,7 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
     return callback();
   }
 
-  this._pullStream.once(&#x27;drain&#x27;, callback);
+  this._pullStream.once('drain', callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1488,7 +1481,7 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Parse.prototype.addListener = function (type, listener) {
-  if (&#x27;entry&#x27; === type) {
+  if ('entry' === type) {
     this._hasEntryListener = true;
   }
   return Transform.prototype.addListener.call(this, type, listener);
@@ -1507,8 +1500,8 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Parse.prototype.pipe = function (dest, opts) {
   var self = this;
-  if (typeof dest.add === &#x22;function&#x22;) {
-    self.on(&#x22;entry&#x22;, function (entry) {
+  if (typeof dest.add === "function") {
+    self.on("entry", function (entry) {
       dest.add(entry);
     })
   }
@@ -1545,8 +1538,8 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
   // sync guard flag.
   this._readableState.sync = false;
 
-  this.once(&#x27;finish&#x27;, function() {
-    if (&#x27;function&#x27; === typeof this._flush)
+  this.once('finish', function() {
+    if ('function' === typeof this._flush)
       this._flush(function(er) {
         done(stream, er);
       });
@@ -1569,12 +1562,12 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
     <li>description and source-code<pre class="apidocCodePre">Parse.super_.prototype._read = function (n) {
   var ts = this._transformState;
 
-  if (ts.writechunk !== null &#x26;&#x26; ts.writecb &#x26;&#x26; !ts.transforming) {
+  if (ts.writechunk !== null &amp;&amp; ts.writecb &amp;&amp; !ts.transforming) {
     ts.transforming = true;
     this._transform(ts.writechunk, ts.writeencoding, ts.afterTransform);
   } else {
     // mark that we need a transform, so that any data that comes in
-    // will get processed, now that we&#x27;ve asked for it.
+    // will get processed, now that we've asked for it.
     ts.needTransform = true;
   }
 }</pre></li>
@@ -1591,7 +1584,7 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Parse.super_.prototype._transform = function (chunk, encoding, cb) {
-  throw new Error(&#x27;not implemented&#x27;);
+  throw new Error('not implemented');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1614,7 +1607,7 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
     var rs = this._readableState;
     if (ts.needTransform ||
         rs.needReadable ||
-        rs.length &#x3c; rs.highWaterMark)
+        rs.length &lt; rs.highWaterMark)
       this._read(rs.highWaterMark);
   }
 }</pre></li>
@@ -1689,27 +1682,27 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
   this._opts = opts || { verbose: false };
 
   this._parser = Parse(this._opts);
-  this._parser.on(&#x27;error&#x27;, function(err) {
-    self.emit(&#x27;error&#x27;, err);
+  this._parser.on('error', function(err) {
+    self.emit('error', err);
   });
-  this.on(&#x27;finish&#x27;, function() {
+  this.on('finish', function() {
     self._parser.end();
   });
 
   var writer = Writer({
-    type: &#x27;Directory&#x27;,
+    type: 'Directory',
     path: opts.path
   });
-  writer.on(&#x27;error&#x27;, function(err) {
-    self.emit(&#x27;error&#x27;, err);
+  writer.on('error', function(err) {
+    self.emit('error', err);
   });
-  writer.on(&#x27;close&#x27;, function() {
-    self.emit(&#x27;close&#x27;)
+  writer.on('close', function() {
+    self.emit('close')
   });
 
-  this.on(&#x27;pipe&#x27;, function(source) {
-    if (opts.verbose &#x26;&#x26; source.path) {
-      console.log(&#x27;Archive: &#x27;, source.path);
+  this.on('pipe', function(source) {
+    if (opts.verbose &amp;&amp; source.path) {
+      console.log('Archive: ', source.path);
     }
   });
 
@@ -1723,11 +1716,11 @@ $ npm install unzip
 
 ### Extract to a directory
 ```javascript
-fs.createReadStream(&#x27;path/to/archive.zip&#x27;).pipe(unzip.<span class="apidocCodeKeywordSpan">Extract</span>({ path: &#x27
-;output/path&#x27; }));
+fs.createReadStream('path/to/archive.zip').pipe(unzip.<span class="apidocCodeKeywordSpan">Extract</span>({ path: '
+;output/path' }));
 ```
 
-Extract emits the &#x27;close&#x27; event once the zip&#x27;s contents have been fully extracted to disk.
+Extract emits the 'close' event once the zip's contents have been fully extracted to disk.
 
 ### Parse zip file contents
 
@@ -1745,11 +1738,11 @@ Process each zip file entry or pipe entries to another stream.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Writable(options) {
-  var Duplex = require(&#x27;./_stream_duplex&#x27;);
+  var Duplex = require('./_stream_duplex');
 
-  // Writable ctor is applied to Duplexes, though they&#x27;re not
-  // instanceof Writable, they&#x27;re instanceof Readable.
-  if (!(this instanceof Writable) &#x26;&#x26; !(this instanceof Duplex))
+  // Writable ctor is applied to Duplexes, though they're not
+  // instanceof Writable, they're instanceof Readable.
+  if (!(this instanceof Writable) &amp;&amp; !(this instanceof Duplex))
     return new Writable(options);
 
   this._writableState = new WritableState(options, this);
@@ -1781,7 +1774,7 @@ Process each zip file entry or pipe entries to another stream.
     return callback();
   }
 
-  return this._parser.once(&#x27;drain&#x27;, callback);
+  return this._parser.once('drain', callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1805,7 +1798,7 @@ Process each zip file entry or pipe entries to another stream.
     return callback();
   }
 
-  return this._parser.once(&#x27;drain&#x27;, callback);
+  return this._parser.once('drain', callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1860,7 +1853,7 @@ Process each zip file entry or pipe entries to another stream.
   this.ending = false;
   // when end() has been called, and returned
   this.ended = false;
-  // when &#x27;finish&#x27; is emitted
+  // when 'finish' is emitted
   this.finished = false;
 
   // should we decode strings into buffers before passing to _write?
@@ -1870,30 +1863,30 @@ Process each zip file entry or pipe entries to another stream.
   this.decodeStrings = !noDecode;
 
   // Crypto is kind of old and crusty.  Historically, its default string
-  // encoding is &#x27;binary&#x27; so we have to make this configurable.
-  // Everything else in the universe uses &#x27;utf8&#x27;, though.
-  this.defaultEncoding = options.defaultEncoding || &#x27;utf8&#x27;;
+  // encoding is 'binary' so we have to make this configurable.
+  // Everything else in the universe uses 'utf8', though.
+  this.defaultEncoding = options.defaultEncoding || 'utf8';
 
   // not an actual buffer we keep track of, but a measurement
-  // of how much we&#x27;re waiting to get pushed to some underlying
+  // of how much we're waiting to get pushed to some underlying
   // socket or file.
   this.length = 0;
 
-  // a flag to see when we&#x27;re in the middle of a write.
+  // a flag to see when we're in the middle of a write.
   this.writing = false;
 
   // a flag to be able to tell if the onwrite cb is called immediately,
   // or on a later tick.  We set this to true at first, becuase any
-  // actions that shouldn&#x27;t happen until &#x22;later&#x22; should generally also
+  // actions that shouldn't happen until "later" should generally also
   // not happen before the first write call.
   this.sync = true;
 
-  // a flag to know if we&#x27;re processing previously buffered items, which
-  // may call the _write() callback in the same tick, so that we don&#x27;t
+  // a flag to know if we're processing previously buffered items, which
+  // may call the _write() callback in the same tick, so that we don't
   // end up in an overlapped onwrite situation.
   this.bufferProcessing = false;
 
-  // the callback that&#x27;s passed to _write(chunk,cb)
+  // the callback that's passed to _write(chunk,cb)
   this.onwrite = function(er) {
     onwrite(stream, er);
   };
@@ -1927,7 +1920,7 @@ Process each zip file entry or pipe entries to another stream.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_write = function (chunk, encoding, cb) {
-  cb(new Error(&#x27;not implemented&#x27;));
+  cb(new Error('not implemented'));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1944,20 +1937,20 @@ Process each zip file entry or pipe entries to another stream.
     <li>description and source-code<pre class="apidocCodePre">end = function (chunk, encoding, cb) {
   var state = this._writableState;
 
-  if (typeof chunk === &#x27;function&#x27;) {
+  if (typeof chunk === 'function') {
     cb = chunk;
     chunk = null;
     encoding = null;
-  } else if (typeof encoding === &#x27;function&#x27;) {
+  } else if (typeof encoding === 'function') {
     cb = encoding;
     encoding = null;
   }
 
-  if (typeof chunk !== &#x27;undefined&#x27; &#x26;&#x26; chunk !== null)
+  if (typeof chunk !== 'undefined' &amp;&amp; chunk !== null)
     this.write(chunk, encoding);
 
   // ignore unnecessary end() calls.
-  if (!state.ending &#x26;&#x26; !state.finished)
+  if (!state.ending &amp;&amp; !state.finished)
     endWritable(this, state, cb);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -1973,7 +1966,7 @@ Process each zip file entry or pipe entries to another stream.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">pipe = function () {
-  this.emit(&#x27;error&#x27;, new Error(&#x27;Cannot pipe. Not readable.&#x27;));
+  this.emit('error', new Error('Cannot pipe. Not readable.'));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 $ npm install unzip
@@ -1983,11 +1976,11 @@ $ npm install unzip
 
 ### Extract to a directory
 ```javascript
-fs.createReadStream(&#x27;path/to/archive.zip&#x27;).<span class="apidocCodeKeywordSpan">pipe</span>(unzip.Extract({ path: &#x27
-;output/path&#x27; }));
+fs.createReadStream('path/to/archive.zip').<span class="apidocCodeKeywordSpan">pipe</span>(unzip.Extract({ path: '
+;output/path' }));
 ```
 
-Extract emits the &#x27;close&#x27; event once the zip&#x27;s contents have been fully extracted to disk.
+Extract emits the 'close' event once the zip's contents have been fully extracted to disk.
 
 ### Parse zip file contents
 
@@ -2008,17 +2001,17 @@ Process each zip file entry or pipe entries to another stream.
   var state = this._writableState;
   var ret = false;
 
-  if (typeof encoding === &#x27;function&#x27;) {
+  if (typeof encoding === 'function') {
     cb = encoding;
     encoding = null;
   }
 
   if (Buffer.isBuffer(chunk))
-    encoding = &#x27;buffer&#x27;;
+    encoding = 'buffer';
   else if (!encoding)
     encoding = state.defaultEncoding;
 
-  if (typeof cb !== &#x27;function&#x27;)
+  if (typeof cb !== 'function')
     cb = function() {};
 
   if (state.ended)
@@ -2046,7 +2039,7 @@ Process each zip file entry or pipe entries to another stream.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_write = function (chunk, encoding, cb) {
-  cb(new Error(&#x27;not implemented&#x27;));
+  cb(new Error('not implemented'));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2068,20 +2061,20 @@ Process each zip file entry or pipe entries to another stream.
     <li>description and source-code<pre class="apidocCodePre">end = function (chunk, encoding, cb) {
   var state = this._writableState;
 
-  if (typeof chunk === &#x27;function&#x27;) {
+  if (typeof chunk === 'function') {
     cb = chunk;
     chunk = null;
     encoding = null;
-  } else if (typeof encoding === &#x27;function&#x27;) {
+  } else if (typeof encoding === 'function') {
     cb = encoding;
     encoding = null;
   }
 
-  if (typeof chunk !== &#x27;undefined&#x27; &#x26;&#x26; chunk !== null)
+  if (typeof chunk !== 'undefined' &amp;&amp; chunk !== null)
     this.write(chunk, encoding);
 
   // ignore unnecessary end() calls.
-  if (!state.ending &#x26;&#x26; !state.finished)
+  if (!state.ending &amp;&amp; !state.finished)
     endWritable(this, state, cb);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2102,7 +2095,7 @@ Process each zip file entry or pipe entries to another stream.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">pipe = function () {
-  this.emit(&#x27;error&#x27;, new Error(&#x27;Cannot pipe. Not readable.&#x27;));
+  this.emit('error', new Error('Cannot pipe. Not readable.'));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 $ npm install unzip
@@ -2112,11 +2105,11 @@ $ npm install unzip
 
 ### Extract to a directory
 ```javascript
-fs.createReadStream(&#x27;path/to/archive.zip&#x27;).<span class="apidocCodeKeywordSpan">pipe</span>(unzip.Extract({ path: &#x27
-;output/path&#x27; }));
+fs.createReadStream('path/to/archive.zip').<span class="apidocCodeKeywordSpan">pipe</span>(unzip.Extract({ path: '
+;output/path' }));
 ```
 
-Extract emits the &#x27;close&#x27; event once the zip&#x27;s contents have been fully extracted to disk.
+Extract emits the 'close' event once the zip's contents have been fully extracted to disk.
 
 ### Parse zip file contents
 
@@ -2142,17 +2135,17 @@ Process each zip file entry or pipe entries to another stream.
   var state = this._writableState;
   var ret = false;
 
-  if (typeof encoding === &#x27;function&#x27;) {
+  if (typeof encoding === 'function') {
     cb = encoding;
     encoding = null;
   }
 
   if (Buffer.isBuffer(chunk))
-    encoding = &#x27;buffer&#x27;;
+    encoding = 'buffer';
   else if (!encoding)
     encoding = state.defaultEncoding;
 
-  if (typeof cb !== &#x27;function&#x27;)
+  if (typeof cb !== 'function')
     cb = function() {};
 
   if (state.ended)
@@ -2190,13 +2183,13 @@ Process each zip file entry or pipe entries to another stream.
   this._hasEntryListener = false;
 
   this._pullStream = new PullStream();
-  this._pullStream.on(&#x22;error&#x22;, function (e) {
-    self.emit(&#x27;error&#x27;, e);
+  this._pullStream.on("error", function (e) {
+    self.emit('error', e);
   });
-  this._pullStream.once(&#x22;end&#x22;, function () {
+  this._pullStream.once("end", function () {
     self._streamEnd = true;
   });
-  this._pullStream.once(&#x22;finish&#x22;, function () {
+  this._pullStream.once("finish", function () {
     self._streamFinish = true;
   });
 
@@ -2205,18 +2198,18 @@ Process each zip file entry or pipe entries to another stream.
     <li>example usage<pre class="apidocCodePre">...
 Process each zip file entry or pipe entries to another stream.
 
-__Important__: If you do not intend to consume an entry stream&#x27;s raw data, call autodrain() to dispose of the entry&#x27;s
+__Important__: If you do not intend to consume an entry stream's raw data, call autodrain() to dispose of the entry's
 contents. Otherwise you risk running out of memory.
 
 ```javascript
-fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
+fs.createReadStream('path/to/archive.zip')
 .pipe(unzip.<span class="apidocCodeKeywordSpan">Parse</span>())
-.on(&#x27;entry&#x27;, function (entry) {
+.on('entry', function (entry) {
   var fileName = entry.path;
-  var type = entry.type; // &#x27;Directory&#x27; or &#x27;File&#x27;
+  var type = entry.type; // 'Directory' or 'File'
   var size = entry.size;
-  if (fileName === &#x22;this IS the file I&#x27;m looking for&#x22;) {
-    entry.pipe(fs.createWriteStream(&#x27;output/path&#x27;));
+  if (fileName === "this IS the file I'm looking for") {
+    entry.pipe(fs.createWriteStream('output/path'));
   } else {
 ...</pre></li>
     </ul>
@@ -2241,13 +2234,13 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
   this._hasEntryListener = false;
 
   this._pullStream = new PullStream();
-  this._pullStream.on(&#x22;error&#x22;, function (e) {
-    self.emit(&#x27;error&#x27;, e);
+  this._pullStream.on("error", function (e) {
+    self.emit('error', e);
   });
-  this._pullStream.once(&#x22;end&#x22;, function () {
+  this._pullStream.once("end", function () {
     self._streamEnd = true;
   });
-  this._pullStream.once(&#x22;finish&#x22;, function () {
+  this._pullStream.once("finish", function () {
     self._streamFinish = true;
   });
 
@@ -2284,8 +2277,8 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
   // sync guard flag.
   this._readableState.sync = false;
 
-  this.once(&#x27;finish&#x27;, function() {
-    if (&#x27;function&#x27; === typeof this._flush)
+  this.once('finish', function() {
+    if ('function' === typeof this._flush)
       this._flush(function(er) {
         done(stream, er);
       });
@@ -2315,7 +2308,7 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
     return setImmediate(this._flush.bind(this, callback));
   }
 
-  this.emit(&#x27;close&#x27;);
+  this.emit('close');
   return callback();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2334,14 +2327,14 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
   var self = this;
   this._pullStream.pull(16, function (err, data) {
     if (err) {
-      return self.emit(&#x27;error&#x27;, err);
+      return self.emit('error', err);
     }
 
     var vars = binary.parse(data)
-      .word32lu(&#x27;dataDescriptorSignature&#x27;)
-      .word32lu(&#x27;crc32&#x27;)
-      .word32lu(&#x27;compressedSize&#x27;)
-      .word32lu(&#x27;uncompressedSize&#x27;)
+      .word32lu('dataDescriptorSignature')
+      .word32lu('crc32')
+      .word32lu('compressedSize')
+      .word32lu('uncompressedSize')
       .vars;
 
     entry.size = vars.uncompressedSize;
@@ -2364,41 +2357,41 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
   var self = this;
   this._pullStream.pull(42, function (err, data) {
     if (err) {
-      return self.emit(&#x27;error&#x27;, err);
+      return self.emit('error', err);
     }
 
     var vars = binary.parse(data)
-      .word16lu(&#x27;versionMadeBy&#x27;)
-      .word16lu(&#x27;versionsNeededToExtract&#x27;)
-      .word16lu(&#x27;flags&#x27;)
-      .word16lu(&#x27;compressionMethod&#x27;)
-      .word16lu(&#x27;lastModifiedTime&#x27;)
-      .word16lu(&#x27;lastModifiedDate&#x27;)
-      .word32lu(&#x27;crc32&#x27;)
-      .word32lu(&#x27;compressedSize&#x27;)
-      .word32lu(&#x27;uncompressedSize&#x27;)
-      .word16lu(&#x27;fileNameLength&#x27;)
-      .word16lu(&#x27;extraFieldLength&#x27;)
-      .word16lu(&#x27;fileCommentLength&#x27;)
-      .word16lu(&#x27;diskNumber&#x27;)
-      .word16lu(&#x27;internalFileAttributes&#x27;)
-      .word32lu(&#x27;externalFileAttributes&#x27;)
-      .word32lu(&#x27;offsetToLocalFileHeader&#x27;)
+      .word16lu('versionMadeBy')
+      .word16lu('versionsNeededToExtract')
+      .word16lu('flags')
+      .word16lu('compressionMethod')
+      .word16lu('lastModifiedTime')
+      .word16lu('lastModifiedDate')
+      .word32lu('crc32')
+      .word32lu('compressedSize')
+      .word32lu('uncompressedSize')
+      .word16lu('fileNameLength')
+      .word16lu('extraFieldLength')
+      .word16lu('fileCommentLength')
+      .word16lu('diskNumber')
+      .word16lu('internalFileAttributes')
+      .word32lu('externalFileAttributes')
+      .word32lu('offsetToLocalFileHeader')
       .vars;
 
     return self._pullStream.pull(vars.fileNameLength, function (err, fileName) {
       if (err) {
-        return self.emit(&#x27;error&#x27;, err);
+        return self.emit('error', err);
       }
-      fileName = fileName.toString(&#x27;utf8&#x27;);
+      fileName = fileName.toString('utf8');
 
       self._pullStream.pull(vars.extraFieldLength, function (err, extraField) {
         if (err) {
-          return self.emit(&#x27;error&#x27;, err);
+          return self.emit('error', err);
         }
         self._pullStream.pull(vars.fileCommentLength, function (err, fileComment) {
           if (err) {
-            return self.emit(&#x27;error&#x27;, err);
+            return self.emit('error', err);
           }
           return self._readRecord();
         });
@@ -2422,26 +2415,26 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
   var self = this;
   this._pullStream.pull(18, function (err, data) {
     if (err) {
-      return self.emit(&#x27;error&#x27;, err);
+      return self.emit('error', err);
     }
 
     var vars = binary.parse(data)
-      .word16lu(&#x27;diskNumber&#x27;)
-      .word16lu(&#x27;diskStart&#x27;)
-      .word16lu(&#x27;numberOfRecordsOnDisk&#x27;)
-      .word16lu(&#x27;numberOfRecords&#x27;)
-      .word32lu(&#x27;sizeOfCentralDirectory&#x27;)
-      .word32lu(&#x27;offsetToStartOfCentralDirectory&#x27;)
-      .word16lu(&#x27;commentLength&#x27;)
+      .word16lu('diskNumber')
+      .word16lu('diskStart')
+      .word16lu('numberOfRecordsOnDisk')
+      .word16lu('numberOfRecords')
+      .word32lu('sizeOfCentralDirectory')
+      .word32lu('offsetToStartOfCentralDirectory')
+      .word16lu('commentLength')
       .vars;
 
     if (vars.commentLength) {
       setImmediate(function() {
         self._pullStream.pull(vars.commentLength, function (err, comment) {
           if (err) {
-            return self.emit(&#x27;error&#x27;, err);
+            return self.emit('error', err);
           }
-          comment = comment.toString(&#x27;utf8&#x27;);
+          comment = comment.toString('utf8');
           return self._pullStream.end();
         });
       });
@@ -2467,57 +2460,57 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
   var self = this;
   this._pullStream.pull(26, function (err, data) {
     if (err) {
-      return self.emit(&#x27;error&#x27;, err);
+      return self.emit('error', err);
     }
 
     var vars = binary.parse(data)
-      .word16lu(&#x27;versionsNeededToExtract&#x27;)
-      .word16lu(&#x27;flags&#x27;)
-      .word16lu(&#x27;compressionMethod&#x27;)
-      .word16lu(&#x27;lastModifiedTime&#x27;)
-      .word16lu(&#x27;lastModifiedDate&#x27;)
-      .word32lu(&#x27;crc32&#x27;)
-      .word32lu(&#x27;compressedSize&#x27;)
-      .word32lu(&#x27;uncompressedSize&#x27;)
-      .word16lu(&#x27;fileNameLength&#x27;)
-      .word16lu(&#x27;extraFieldLength&#x27;)
+      .word16lu('versionsNeededToExtract')
+      .word16lu('flags')
+      .word16lu('compressionMethod')
+      .word16lu('lastModifiedTime')
+      .word16lu('lastModifiedDate')
+      .word32lu('crc32')
+      .word32lu('compressedSize')
+      .word32lu('uncompressedSize')
+      .word16lu('fileNameLength')
+      .word16lu('extraFieldLength')
       .vars;
 
     return self._pullStream.pull(vars.fileNameLength, function (err, fileName) {
       if (err) {
-        return self.emit(&#x27;error&#x27;, err);
+        return self.emit('error', err);
       }
-      fileName = fileName.toString(&#x27;utf8&#x27;);
+      fileName = fileName.toString('utf8');
       var entry = new Entry();
       entry.path = fileName;
       entry.props.path = fileName;
-      entry.type = (vars.compressedSize === 0 &#x26;&#x26; /[\/\\]$/.test(fileName)) ? &#x27;Directory&#x27; : &#x27;File&#x27;;
+      entry.type = (vars.compressedSize === 0 &amp;&amp; /[\/\\]$/.test(fileName)) ? 'Directory' : 'File';
 
       if (self._opts.verbose) {
-        if (entry.type === &#x27;Directory&#x27;) {
-          console.log(&#x27;   creating:&#x27;, fileName);
-        } else if (entry.type === &#x27;File&#x27;) {
+        if (entry.type === 'Directory') {
+          console.log('   creating:', fileName);
+        } else if (entry.type === 'File') {
           if (vars.compressionMethod === 0) {
-            console.log(&#x27; extracting:&#x27;, fileName);
+            console.log(' extracting:', fileName);
           } else {
-            console.log(&#x27;  inflating:&#x27;, fileName);
+            console.log('  inflating:', fileName);
           }
         }
       }
 
       var hasEntryListener = self._hasEntryListener;
       if (hasEntryListener) {
-        self.emit(&#x27;entry&#x27;, entry);
+        self.emit('entry', entry);
       }
 
       self._pullStream.pull(vars.extraFieldLength, function (err, extraField) {
         if (err) {
-          return self.emit(&#x27;error&#x27;, err);
+          return self.emit('error', err);
         }
         if (vars.compressionMethod === 0) {
           self._pullStream.pull(vars.compressedSize, function (err, compressedData) {
             if (err) {
-              return self.emit(&#x27;error&#x27;, err);
+              return self.emit('error', err);
             }
 
             if (hasEntryListener) {
@@ -2528,22 +2521,22 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
             return self._readRecord();
           });
         } else {
-          var fileSizeKnown = !(vars.flags &#x26; 0x08);
+          var fileSizeKnown = !(vars.flags &amp; 0x08);
 
           var inflater = zlib.createInflateRaw();
-          inflater.on(&#x27;error&#x27;, function (err) {
-            self.emit(&#x27;error&#x27;, err);
+          inflater.on('error', function (err) {
+            self.emit('error', err);
           });
 
           if (fileSizeKnown) {
             entry.size = vars.uncompressedSize;
             if (hasEntryListener) {
-              entry.on(&#x27;finish&#x27;, self._readRecord.bind(self));
+              entry.on('finish', self._readRecord.bind(self));
               self._pullStream.pipe(vars.compressedSize, inflater).pipe(entry);
             } else {
               self._pullStream.drain(vars.compressedSize, function (err) {
                 if (err) {
-                  return self.emit(&#x27;error&#x27;, err);
+                  return self.emit('error', err);
                 }
                 self._readRecord();
               });
@@ -2593,7 +2586,7 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
   var self = this;
   this._pullStream.pull(4, function (err, data) {
     if (err) {
-      return self.emit(&#x27;error&#x27;, err);
+      return self.emit('error', err);
     }
 
     if (data.length === 0) {
@@ -2608,8 +2601,8 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
     } else if (signature === 0x06054b50) {
       self._readEndOfCentralDirectoryRecord();
     } else {
-      err = new Error(&#x27;invalid signature: 0x&#x27; + signature.toString(16));
-      self.emit(&#x27;error&#x27;, err);
+      err = new Error('invalid signature: 0x' + signature.toString(16));
+      self.emit('error', err);
     }
   });
 }</pre></li>
@@ -2630,7 +2623,7 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
     return callback();
   }
 
-  this._pullStream.once(&#x27;drain&#x27;, callback);
+  this._pullStream.once('drain', callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2645,7 +2638,7 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">addListener = function (type, listener) {
-  if (&#x27;entry&#x27; === type) {
+  if ('entry' === type) {
     this._hasEntryListener = true;
   }
   return Transform.prototype.addListener.call(this, type, listener);
@@ -2663,25 +2656,25 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">on = function (type, listener) {
-  if (&#x27;entry&#x27; === type) {
+  if ('entry' === type) {
     this._hasEntryListener = true;
   }
   return Transform.prototype.addListener.call(this, type, listener);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-__Important__: If you do not intend to consume an entry stream&#x27;s raw data, call autodrain() to dispose of the entry&#x27;s
+__Important__: If you do not intend to consume an entry stream's raw data, call autodrain() to dispose of the entry's
 contents. Otherwise you risk running out of memory.
 
 ```javascript
-fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
+fs.createReadStream('path/to/archive.zip')
 .pipe(unzip.Parse())
-.<span class="apidocCodeKeywordSpan">on</span>(&#x27;entry&#x27;, function (entry) {
+.<span class="apidocCodeKeywordSpan">on</span>('entry', function (entry) {
   var fileName = entry.path;
-  var type = entry.type; // &#x27;Directory&#x27; or &#x27;File&#x27;
+  var type = entry.type; // 'Directory' or 'File'
   var size = entry.size;
-  if (fileName === &#x22;this IS the file I&#x27;m looking for&#x22;) {
-    entry.pipe(fs.createWriteStream(&#x27;output/path&#x27;));
+  if (fileName === "this IS the file I'm looking for") {
+    entry.pipe(fs.createWriteStream('output/path'));
   } else {
     entry.autodrain();
 ...</pre></li>
@@ -2698,8 +2691,8 @@ fs.createReadStream(&#x27;path/to/archive.zip&#x27;)
     <ul>
     <li>description and source-code<pre class="apidocCodePre">pipe = function (dest, opts) {
   var self = this;
-  if (typeof dest.add === &#x22;function&#x22;) {
-    self.on(&#x22;entry&#x22;, function (entry) {
+  if (typeof dest.add === "function") {
+    self.on("entry", function (entry) {
       dest.add(entry);
     })
   }
@@ -2713,11 +2706,11 @@ $ npm install unzip
 
 ### Extract to a directory
 ```javascript
-fs.createReadStream(&#x27;path/to/archive.zip&#x27;).<span class="apidocCodeKeywordSpan">pipe</span>(unzip.Extract({ path: &#x27
-;output/path&#x27; }));
+fs.createReadStream('path/to/archive.zip').<span class="apidocCodeKeywordSpan">pipe</span>(unzip.Extract({ path: '
+;output/path' }));
 ```
 
-Extract emits the &#x27;close&#x27; event once the zip&#x27;s contents have been fully extracted to disk.
+Extract emits the 'close' event once the zip's contents have been fully extracted to disk.
 
 ### Parse zip file contents
 
@@ -2744,7 +2737,7 @@ Process each zip file entry or pipe entries to another stream.
     return setImmediate(this._flush.bind(this, callback));
   }
 
-  this.emit(&#x27;close&#x27;);
+  this.emit('close');
   return callback();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2768,14 +2761,14 @@ Process each zip file entry or pipe entries to another stream.
   var self = this;
   this._pullStream.pull(16, function (err, data) {
     if (err) {
-      return self.emit(&#x27;error&#x27;, err);
+      return self.emit('error', err);
     }
 
     var vars = binary.parse(data)
-      .word32lu(&#x27;dataDescriptorSignature&#x27;)
-      .word32lu(&#x27;crc32&#x27;)
-      .word32lu(&#x27;compressedSize&#x27;)
-      .word32lu(&#x27;uncompressedSize&#x27;)
+      .word32lu('dataDescriptorSignature')
+      .word32lu('crc32')
+      .word32lu('compressedSize')
+      .word32lu('uncompressedSize')
       .vars;
 
     entry.size = vars.uncompressedSize;
@@ -2803,41 +2796,41 @@ Process each zip file entry or pipe entries to another stream.
   var self = this;
   this._pullStream.pull(42, function (err, data) {
     if (err) {
-      return self.emit(&#x27;error&#x27;, err);
+      return self.emit('error', err);
     }
 
     var vars = binary.parse(data)
-      .word16lu(&#x27;versionMadeBy&#x27;)
-      .word16lu(&#x27;versionsNeededToExtract&#x27;)
-      .word16lu(&#x27;flags&#x27;)
-      .word16lu(&#x27;compressionMethod&#x27;)
-      .word16lu(&#x27;lastModifiedTime&#x27;)
-      .word16lu(&#x27;lastModifiedDate&#x27;)
-      .word32lu(&#x27;crc32&#x27;)
-      .word32lu(&#x27;compressedSize&#x27;)
-      .word32lu(&#x27;uncompressedSize&#x27;)
-      .word16lu(&#x27;fileNameLength&#x27;)
-      .word16lu(&#x27;extraFieldLength&#x27;)
-      .word16lu(&#x27;fileCommentLength&#x27;)
-      .word16lu(&#x27;diskNumber&#x27;)
-      .word16lu(&#x27;internalFileAttributes&#x27;)
-      .word32lu(&#x27;externalFileAttributes&#x27;)
-      .word32lu(&#x27;offsetToLocalFileHeader&#x27;)
+      .word16lu('versionMadeBy')
+      .word16lu('versionsNeededToExtract')
+      .word16lu('flags')
+      .word16lu('compressionMethod')
+      .word16lu('lastModifiedTime')
+      .word16lu('lastModifiedDate')
+      .word32lu('crc32')
+      .word32lu('compressedSize')
+      .word32lu('uncompressedSize')
+      .word16lu('fileNameLength')
+      .word16lu('extraFieldLength')
+      .word16lu('fileCommentLength')
+      .word16lu('diskNumber')
+      .word16lu('internalFileAttributes')
+      .word32lu('externalFileAttributes')
+      .word32lu('offsetToLocalFileHeader')
       .vars;
 
     return self._pullStream.pull(vars.fileNameLength, function (err, fileName) {
       if (err) {
-        return self.emit(&#x27;error&#x27;, err);
+        return self.emit('error', err);
       }
-      fileName = fileName.toString(&#x27;utf8&#x27;);
+      fileName = fileName.toString('utf8');
 
       self._pullStream.pull(vars.extraFieldLength, function (err, extraField) {
         if (err) {
-          return self.emit(&#x27;error&#x27;, err);
+          return self.emit('error', err);
         }
         self._pullStream.pull(vars.fileCommentLength, function (err, fileComment) {
           if (err) {
-            return self.emit(&#x27;error&#x27;, err);
+            return self.emit('error', err);
           }
           return self._readRecord();
         });
@@ -2866,26 +2859,26 @@ Process each zip file entry or pipe entries to another stream.
   var self = this;
   this._pullStream.pull(18, function (err, data) {
     if (err) {
-      return self.emit(&#x27;error&#x27;, err);
+      return self.emit('error', err);
     }
 
     var vars = binary.parse(data)
-      .word16lu(&#x27;diskNumber&#x27;)
-      .word16lu(&#x27;diskStart&#x27;)
-      .word16lu(&#x27;numberOfRecordsOnDisk&#x27;)
-      .word16lu(&#x27;numberOfRecords&#x27;)
-      .word32lu(&#x27;sizeOfCentralDirectory&#x27;)
-      .word32lu(&#x27;offsetToStartOfCentralDirectory&#x27;)
-      .word16lu(&#x27;commentLength&#x27;)
+      .word16lu('diskNumber')
+      .word16lu('diskStart')
+      .word16lu('numberOfRecordsOnDisk')
+      .word16lu('numberOfRecords')
+      .word32lu('sizeOfCentralDirectory')
+      .word32lu('offsetToStartOfCentralDirectory')
+      .word16lu('commentLength')
       .vars;
 
     if (vars.commentLength) {
       setImmediate(function() {
         self._pullStream.pull(vars.commentLength, function (err, comment) {
           if (err) {
-            return self.emit(&#x27;error&#x27;, err);
+            return self.emit('error', err);
           }
-          comment = comment.toString(&#x27;utf8&#x27;);
+          comment = comment.toString('utf8');
           return self._pullStream.end();
         });
       });
@@ -2916,57 +2909,57 @@ Process each zip file entry or pipe entries to another stream.
   var self = this;
   this._pullStream.pull(26, function (err, data) {
     if (err) {
-      return self.emit(&#x27;error&#x27;, err);
+      return self.emit('error', err);
     }
 
     var vars = binary.parse(data)
-      .word16lu(&#x27;versionsNeededToExtract&#x27;)
-      .word16lu(&#x27;flags&#x27;)
-      .word16lu(&#x27;compressionMethod&#x27;)
-      .word16lu(&#x27;lastModifiedTime&#x27;)
-      .word16lu(&#x27;lastModifiedDate&#x27;)
-      .word32lu(&#x27;crc32&#x27;)
-      .word32lu(&#x27;compressedSize&#x27;)
-      .word32lu(&#x27;uncompressedSize&#x27;)
-      .word16lu(&#x27;fileNameLength&#x27;)
-      .word16lu(&#x27;extraFieldLength&#x27;)
+      .word16lu('versionsNeededToExtract')
+      .word16lu('flags')
+      .word16lu('compressionMethod')
+      .word16lu('lastModifiedTime')
+      .word16lu('lastModifiedDate')
+      .word32lu('crc32')
+      .word32lu('compressedSize')
+      .word32lu('uncompressedSize')
+      .word16lu('fileNameLength')
+      .word16lu('extraFieldLength')
       .vars;
 
     return self._pullStream.pull(vars.fileNameLength, function (err, fileName) {
       if (err) {
-        return self.emit(&#x27;error&#x27;, err);
+        return self.emit('error', err);
       }
-      fileName = fileName.toString(&#x27;utf8&#x27;);
+      fileName = fileName.toString('utf8');
       var entry = new Entry();
       entry.path = fileName;
       entry.props.path = fileName;
-      entry.type = (vars.compressedSize === 0 &#x26;&#x26; /[\/\\]$/.test(fileName)) ? &#x27;Directory&#x27; : &#x27;File&#x27;;
+      entry.type = (vars.compressedSize === 0 &amp;&amp; /[\/\\]$/.test(fileName)) ? 'Directory' : 'File';
 
       if (self._opts.verbose) {
-        if (entry.type === &#x27;Directory&#x27;) {
-          console.log(&#x27;   creating:&#x27;, fileName);
-        } else if (entry.type === &#x27;File&#x27;) {
+        if (entry.type === 'Directory') {
+          console.log('   creating:', fileName);
+        } else if (entry.type === 'File') {
           if (vars.compressionMethod === 0) {
-            console.log(&#x27; extracting:&#x27;, fileName);
+            console.log(' extracting:', fileName);
           } else {
-            console.log(&#x27;  inflating:&#x27;, fileName);
+            console.log('  inflating:', fileName);
           }
         }
       }
 
       var hasEntryListener = self._hasEntryListener;
       if (hasEntryListener) {
-        self.emit(&#x27;entry&#x27;, entry);
+        self.emit('entry', entry);
       }
 
       self._pullStream.pull(vars.extraFieldLength, function (err, extraField) {
         if (err) {
-          return self.emit(&#x27;error&#x27;, err);
+          return self.emit('error', err);
         }
         if (vars.compressionMethod === 0) {
           self._pullStream.pull(vars.compressedSize, function (err, compressedData) {
             if (err) {
-              return self.emit(&#x27;error&#x27;, err);
+              return self.emit('error', err);
             }
 
             if (hasEntryListener) {
@@ -2977,22 +2970,22 @@ Process each zip file entry or pipe entries to another stream.
             return self._readRecord();
           });
         } else {
-          var fileSizeKnown = !(vars.flags &#x26; 0x08);
+          var fileSizeKnown = !(vars.flags &amp; 0x08);
 
           var inflater = zlib.createInflateRaw();
-          inflater.on(&#x27;error&#x27;, function (err) {
-            self.emit(&#x27;error&#x27;, err);
+          inflater.on('error', function (err) {
+            self.emit('error', err);
           });
 
           if (fileSizeKnown) {
             entry.size = vars.uncompressedSize;
             if (hasEntryListener) {
-              entry.on(&#x27;finish&#x27;, self._readRecord.bind(self));
+              entry.on('finish', self._readRecord.bind(self));
               self._pullStream.pipe(vars.compressedSize, inflater).pipe(entry);
             } else {
               self._pullStream.drain(vars.compressedSize, function (err) {
                 if (err) {
-                  return self.emit(&#x27;error&#x27;, err);
+                  return self.emit('error', err);
                 }
                 self._readRecord();
               });
@@ -3047,7 +3040,7 @@ Process each zip file entry or pipe entries to another stream.
   var self = this;
   this._pullStream.pull(4, function (err, data) {
     if (err) {
-      return self.emit(&#x27;error&#x27;, err);
+      return self.emit('error', err);
     }
 
     if (data.length === 0) {
@@ -3062,8 +3055,8 @@ Process each zip file entry or pipe entries to another stream.
     } else if (signature === 0x06054b50) {
       self._readEndOfCentralDirectoryRecord();
     } else {
-      err = new Error(&#x27;invalid signature: 0x&#x27; + signature.toString(16));
-      self.emit(&#x27;error&#x27;, err);
+      err = new Error('invalid signature: 0x' + signature.toString(16));
+      self.emit('error', err);
     }
   });
 }</pre></li>
@@ -3089,7 +3082,7 @@ Process each zip file entry or pipe entries to another stream.
     return callback();
   }
 
-  this._pullStream.once(&#x27;drain&#x27;, callback);
+  this._pullStream.once('drain', callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3109,7 +3102,7 @@ Process each zip file entry or pipe entries to another stream.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">addListener = function (type, listener) {
-  if (&#x27;entry&#x27; === type) {
+  if ('entry' === type) {
     this._hasEntryListener = true;
   }
   return Transform.prototype.addListener.call(this, type, listener);
@@ -3133,8 +3126,8 @@ Process each zip file entry or pipe entries to another stream.
     <ul>
     <li>description and source-code<pre class="apidocCodePre">pipe = function (dest, opts) {
   var self = this;
-  if (typeof dest.add === &#x22;function&#x22;) {
-    self.on(&#x22;entry&#x22;, function (entry) {
+  if (typeof dest.add === "function") {
+    self.on("entry", function (entry) {
       dest.add(entry);
     })
   }
@@ -3148,11 +3141,11 @@ $ npm install unzip
 
 ### Extract to a directory
 ```javascript
-fs.createReadStream(&#x27;path/to/archive.zip&#x27;).<span class="apidocCodeKeywordSpan">pipe</span>(unzip.Extract({ path: &#x27
-;output/path&#x27; }));
+fs.createReadStream('path/to/archive.zip').<span class="apidocCodeKeywordSpan">pipe</span>(unzip.Extract({ path: '
+;output/path' }));
 ```
 
-Extract emits the &#x27;close&#x27; event once the zip&#x27;s contents have been fully extracted to disk.
+Extract emits the 'close' event once the zip's contents have been fully extracted to disk.
 
 ### Parse zip file contents
 
@@ -3181,17 +3174,17 @@ Process each zip file entry or pipe entries to another stream.
   Readable.call(this, options);
   Writable.call(this, options);
 
-  if (options &#x26;&#x26; options.readable === false)
+  if (options &amp;&amp; options.readable === false)
     this.readable = false;
 
-  if (options &#x26;&#x26; options.writable === false)
+  if (options &amp;&amp; options.writable === false)
     this.writable = false;
 
   this.allowHalfOpen = true;
-  if (options &#x26;&#x26; options.allowHalfOpen === false)
+  if (options &amp;&amp; options.allowHalfOpen === false)
     this.allowHalfOpen = false;
 
-  this.once(&#x27;end&#x27;, onend);
+  this.once('end', onend);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3213,12 +3206,12 @@ Process each zip file entry or pipe entries to another stream.
     <li>description and source-code<pre class="apidocCodePre">_read = function (n) {
   var ts = this._transformState;
 
-  if (ts.writechunk !== null &#x26;&#x26; ts.writecb &#x26;&#x26; !ts.transforming) {
+  if (ts.writechunk !== null &amp;&amp; ts.writecb &amp;&amp; !ts.transforming) {
     ts.transforming = true;
     this._transform(ts.writechunk, ts.writeencoding, ts.afterTransform);
   } else {
     // mark that we need a transform, so that any data that comes in
-    // will get processed, now that we&#x27;ve asked for it.
+    // will get processed, now that we've asked for it.
     ts.needTransform = true;
   }
 }</pre></li>
@@ -3235,7 +3228,7 @@ Process each zip file entry or pipe entries to another stream.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_transform = function (chunk, encoding, cb) {
-  throw new Error(&#x27;not implemented&#x27;);
+  throw new Error('not implemented');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3258,7 +3251,7 @@ Process each zip file entry or pipe entries to another stream.
     var rs = this._readableState;
     if (ts.needTransform ||
         rs.needReadable ||
-        rs.length &#x3c; rs.highWaterMark)
+        rs.length &lt; rs.highWaterMark)
       this._read(rs.highWaterMark);
   }
 }</pre></li>
@@ -3298,12 +3291,12 @@ Process each zip file entry or pipe entries to another stream.
     <li>description and source-code<pre class="apidocCodePre">_read = function (n) {
   var ts = this._transformState;
 
-  if (ts.writechunk !== null &#x26;&#x26; ts.writecb &#x26;&#x26; !ts.transforming) {
+  if (ts.writechunk !== null &amp;&amp; ts.writecb &amp;&amp; !ts.transforming) {
     ts.transforming = true;
     this._transform(ts.writechunk, ts.writeencoding, ts.afterTransform);
   } else {
     // mark that we need a transform, so that any data that comes in
-    // will get processed, now that we&#x27;ve asked for it.
+    // will get processed, now that we've asked for it.
     ts.needTransform = true;
   }
 }</pre></li>
@@ -3325,7 +3318,7 @@ Process each zip file entry or pipe entries to another stream.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_transform = function (chunk, encoding, cb) {
-  throw new Error(&#x27;not implemented&#x27;);
+  throw new Error('not implemented');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3353,7 +3346,7 @@ Process each zip file entry or pipe entries to another stream.
     var rs = this._readableState;
     if (ts.needTransform ||
         rs.needReadable ||
-        rs.length &#x3c; rs.highWaterMark)
+        rs.length &lt; rs.highWaterMark)
       this._read(rs.highWaterMark);
   }
 }</pre></li>
@@ -3396,7 +3389,7 @@ Process each zip file entry or pipe entries to another stream.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_write = function (chunk, encoding, cb) {
-  cb(new Error(&#x27;not implemented&#x27;));
+  cb(new Error('not implemented'));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3413,20 +3406,20 @@ Process each zip file entry or pipe entries to another stream.
     <li>description and source-code<pre class="apidocCodePre">end = function (chunk, encoding, cb) {
   var state = this._writableState;
 
-  if (typeof chunk === &#x27;function&#x27;) {
+  if (typeof chunk === 'function') {
     cb = chunk;
     chunk = null;
     encoding = null;
-  } else if (typeof encoding === &#x27;function&#x27;) {
+  } else if (typeof encoding === 'function') {
     cb = encoding;
     encoding = null;
   }
 
-  if (typeof chunk !== &#x27;undefined&#x27; &#x26;&#x26; chunk !== null)
+  if (typeof chunk !== 'undefined' &amp;&amp; chunk !== null)
     this.write(chunk, encoding);
 
   // ignore unnecessary end() calls.
-  if (!state.ending &#x26;&#x26; !state.finished)
+  if (!state.ending &amp;&amp; !state.finished)
     endWritable(this, state, cb);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3445,17 +3438,17 @@ Process each zip file entry or pipe entries to another stream.
   var state = this._writableState;
   var ret = false;
 
-  if (typeof encoding === &#x27;function&#x27;) {
+  if (typeof encoding === 'function') {
     cb = encoding;
     encoding = null;
   }
 
   if (Buffer.isBuffer(chunk))
-    encoding = &#x27;buffer&#x27;;
+    encoding = 'buffer';
   else if (!encoding)
     encoding = state.defaultEncoding;
 
-  if (typeof cb !== &#x27;function&#x27;)
+  if (typeof cb !== 'function')
     cb = function() {};
 
   if (state.ended)
@@ -3522,15 +3515,15 @@ Process each zip file entry or pipe entries to another stream.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">autodrain = function () {
-  this.on(&#x27;readable&#x27;, this.read.bind(this));
+  this.on('readable', this.read.bind(this));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  .on(&#x27;entry&#x27;, function (entry) {
+  .on('entry', function (entry) {
     var fileName = entry.path;
-    var type = entry.type; // &#x27;Directory&#x27; or &#x27;File&#x27;
+    var type = entry.type; // 'Directory' or 'File'
     var size = entry.size;
-    if (fileName === &#x22;this IS the file I&#x27;m looking for&#x22;) {
-      entry.pipe(fs.createWriteStream(&#x27;output/path&#x27;));
+    if (fileName === "this IS the file I'm looking for") {
+      entry.pipe(fs.createWriteStream('output/path'));
     } else {
       entry.<span class="apidocCodeKeywordSpan">autodrain</span>();
     }
@@ -3552,3 +3545,4 @@ Or pipe the output of unzip.Parse() to fstream
     ]
 </div>
 </div>
+</body></html>
