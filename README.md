@@ -1,4 +1,7 @@
-# api documentation for  [unzip (v0.1.11)](https://github.com/EvanOxfeld/node-unzip)  [![npm package](https://img.shields.io/npm/v/npmdoc-unzip.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-unzip) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-unzip.svg)](https://travis-ci.org/npmdoc/node-npmdoc-unzip)
+# npmdoc-unzip
+
+#### basic api documentation for  [unzip (v0.1.11)](https://github.com/EvanOxfeld/node-unzip)  [![npm package](https://img.shields.io/npm/v/npmdoc-unzip.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-unzip) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-unzip.svg)](https://travis-ci.org/npmdoc/node-npmdoc-unzip)
+
 #### Unzip cross-platform streaming API compatible with fstream and fs.ReadStream
 
 [![NPM](https://nodei.co/npm/unzip.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/unzip)
@@ -77,7 +80,8 @@
     "scripts": {
         "test": "tap ./test/*.js"
     },
-    "version": "0.1.11"
+    "version": "0.1.11",
+    "bin": {}
 }
 ```
 

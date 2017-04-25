@@ -1,7 +1,7 @@
 {
     "author": "kai zhu <kaizhu256@gmail.com>",
     "buildNpmdoc": "unzip",
-    "description": "api documentation for [unzip (v0.1.11)](https://github.com/EvanOxfeld/node-unzip) [![npm package](https://img.shields.io/npm/v/npmdoc-unzip.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-unzip) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-unzip.svg)](https://travis-ci.org/npmdoc/node-npmdoc-unzip)",
+    "description": "#### basic api documentation for  [unzip (v0.1.11)](https://github.com/EvanOxfeld/node-unzip)  [![npm package](https://img.shields.io/npm/v/npmdoc-unzip.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-unzip) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-unzip.svg)](https://travis-ci.org/npmdoc/node-npmdoc-unzip)",
     "devDependencies": {
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
         "unzip": "*",
